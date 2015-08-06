@@ -197,7 +197,7 @@ angular.module("ngDraggable", [])
 
                         moveElement(_tx, _ty);
 
-                        $rootScope.$broadcast('draggable:move', { x: _mx, y: _my, tx: _tx, ty: _ty, event: evt, element: element, data: _data, uid: _myid });
+                        $rootScope.$broadcast('draggable:move', { x: _mx, y: _my, tx: _tx, ty: _ty, event: evt, element: element, data: _data, uid: _myid, dragOffset: _dragOffset });
                     };
 
                     var onrelease = function(evt) {
@@ -426,8 +426,8 @@ angular.module("ngDraggable", [])
                     var onDragMove = function(evt, obj) {
                         if(_allowClone) {
 
-                            _tx = obj.tx + _dragOffset.left;
-                            _ty = obj.ty + _dragOffset.top;
+                            _tx = obj.tx + obj.dragOffset.left;
+                            _ty = obj.ty + obj.dragOffset.top;
 
                             moveElement(_tx, _ty);
                         }
